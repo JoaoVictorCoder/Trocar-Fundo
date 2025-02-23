@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <style>
+            body {
+                background-color: #ffffff;
+                font-family: Arial, Helvetica, sans-serif;
+                margin:0;
+                padding: 0;
+            }
+            #caixaExibicao {
+                position:absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #000000;
+                padding: 30px;
+                font-size: 25px;
+                border-radius: 25px;
+            }
+
+            #spanTexto {
+                color: white;
+            }
+            #corAtual {
+                color: blue;
+            }
+            #trocarFundo {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -75%);
+                background-color: lightblue;
+                border: 1px solid;
+                padding: 20px;
+                border-radius: 15px;
+                font-size: 20px;
+            }
+            #trocarFundo:hover {
+                background-color: rgba(173, 216, 230, 0.818);
+            }
+
+            #cabeca {
+                height: 100px;
+                display:flex;
+                flex-direction: row;
+                justify-content:space-around;
+                align-items: center;
+                background-color: #fff;
+                border: 1px solid black;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="cabeca">
+            <span>Trocar cor fundo</span>
+            <span>Hexadecimal</span>
+        </div>
+        <div id="caixaExibicao">
+            <span id='spanTexto'>Cor atual:</span>
+            <span id="corAtual">#FFFFFF</span>
+        </div>
+        <div id="trocarFundo" >
+            <span id="textoBotao">Mudar Cor</span>
+        </div>
+    </body>
+    <script>
+        let cor 
+        let elementoFundo
+        let elementoCorAtual
+        let hexadecimal = [0,1,2,3,4,5,6,7,8,9, 'a', 'b', 'c','d','e', 'f']
+        let botao = document.getElementById('trocarFundo')
+
+        function criarCor(){
+            cor = ''
+            for(i = 1; i <= 6; i++) {
+                cor = cor + hexadecimal[Math.floor(Math.random() * 16)]
+            }
+            return '#' + cor.toUpperCase()
+        }
+
+        function trocarFundo(cor) {
+            elementoFundo = document.getElementsByTagName('body')[0]
+            elementoFundo.style.backgroundColor = cor
+        }
+        function trocarExibicao(cor) {
+            elementoCorAtual = document.getElementById('corAtual')
+            elementoCorAtual.innerText =  cor
+        }
+
+        function inicio() {
+            cor = criarCor()
+            trocarFundo(cor)
+            trocarExibicao(cor)
+        }
+
+        botao.addEventListener('click', () => {
+            inicio()
+        })
+</script>
+</html>
